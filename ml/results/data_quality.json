@@ -1,0 +1,17 @@
+{
+  "movielens_movies": 87585,
+  "tmdb_matched": 86249,
+  "tmdb_match_pct": 98.47462465033968,
+  "release_year_coverage_pct": 99.8755494662328,
+  "runtime_coverage_pct": 97.73477193583376,
+  "director_coverage_pct": 97.9254438545413,
+  "writer_coverage_pct": 88.9044927784438,
+  "cast_coverage_pct": 94.96374950048524,
+  "keyword_coverage_pct": 71.76799680310555,
+  "ratings_loaded": 32000204,
+  "users_loaded": 200948,
+  "eligible_users": 200948,
+  "train_candidate_users": 120000,
+  "validation_candidate_users": 20000,
+  "test_candidate_users": 20000
+}

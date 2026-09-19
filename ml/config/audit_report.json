@@ -1,0 +1,54 @@
+{
+  "audit_version": "V2 final audit",
+  "negative_sampling_fix": {
+    "before": "Excluded every movie ever rated by the user, including future interactions.",
+    "after": "Excludes only movies rated up to the recommendation snapshot.",
+    "status": "fixed"
+  },
+  "temporal_risk_features": [
+    "movie_historical_log_count_norm",
+    "movie_historical_rating_norm"
+  ],
+  "temporal_risk_policy": "Stage-based global movie historical rating/count features are retained only for audit reference and are not eligible for final selection.",
+  "audit_variants": {
+    "leakage_safe_full_content": {
+      "description": "Advanced features without stage-based movie historical rating/count.",
+      "feature_count": 149,
+      "excluded_features": [
+        "movie_historical_log_count_norm",
+        "movie_historical_rating_norm"
+      ]
+    },
+    "leakage_safe_no_metadata_counts": {
+      "description": "Leakage-safe features without metadata entity-count proxies.",
+      "feature_count": 145,
+      "excluded_features": [
+        "movie_historical_log_count_norm",
+        "movie_historical_rating_norm",
+        "movie_log_n_cast",
+        "movie_log_n_directors",
+        "movie_log_n_keywords",
+        "movie_log_n_writers"
+      ]
+    },
+    "personalization_content_core": {
+      "description": "Strict personalization/content model: preference, affinities, genres, release/age/runtime, language, and franchise signal.",
+      "feature_count": 141,
+      "excluded_features": [
+        "movie_has_runtime",
+        "movie_has_year",
+        "movie_historical_log_count_norm",
+        "movie_historical_rating_norm",
+        "movie_log_n_cast",
+        "movie_log_n_directors",
+        "movie_log_n_keywords",
+        "movie_log_n_writers",
+        "movie_metadata_available",
+        "movie_metadata_completeness"
+      ]
+    }
+  },
+  "selection_rule": "Highest validation NDCG@10 among leakage-safe variants only.",
+  "selected_final_model": "leakage_safe_full_content",
+  "test_did_not_select_model": true
+}

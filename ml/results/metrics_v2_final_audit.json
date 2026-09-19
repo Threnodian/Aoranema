@@ -1,0 +1,231 @@
+{
+  "selected_model": "leakage_safe_full_content",
+  "selection_rule": "Validation only; test not used for model selection.",
+  "validation": [
+    {
+      "model": "advanced_full_audit_reference",
+      "precision@10": 0.27094500000000005,
+      "recall@10": 0.9492225000000001,
+      "ndcg@10": 0.7483170067630829,
+      "hitrate@10": 0.9841,
+      "map@10": 0.6394324943783068,
+      "evaluated_users": 20000,
+      "train_seconds": 28.83257484436035,
+      "used_gpu": true,
+      "feature_count": 151,
+      "eligible_for_final": false,
+      "reason": "contains_stage_based_movie_historical_stats",
+      "selected_final": false
+    },
+    {
+      "model": "leakage_safe_full_content",
+      "precision@10": 0.25310499999999997,
+      "recall@10": 0.8851599999999998,
+      "ndcg@10": 0.7092524072059445,
+      "hitrate@10": 0.96365,
+      "map@10": 0.5961661917989417,
+      "evaluated_users": 20000,
+      "train_seconds": 261.7002549171448,
+      "used_gpu": true,
+      "feature_count": 149,
+      "eligible_for_final": true,
+      "reason": "leakage_safe_ablation",
+      "selected_final": true
+    },
+    {
+      "model": "personalization_content_core",
+      "precision@10": 0.23700500000000002,
+      "recall@10": 0.8276725,
+      "ndcg@10": 0.6639470707467391,
+      "hitrate@10": 0.94415,
+      "map@10": 0.5469179616402117,
+      "evaluated_users": 20000,
+      "train_seconds": 257.9798583984375,
+      "used_gpu": true,
+      "feature_count": 141,
+      "eligible_for_final": true,
+      "reason": "leakage_safe_ablation",
+      "selected_final": false
+    },
+    {
+      "model": "leakage_safe_no_metadata_counts",
+      "precision@10": 0.23716000000000004,
+      "recall@10": 0.8282924999999999,
+      "ndcg@10": 0.6624956454446316,
+      "hitrate@10": 0.94445,
+      "map@10": 0.5448658869047619,
+      "evaluated_users": 20000,
+      "train_seconds": 258.5639548301697,
+      "used_gpu": true,
+      "feature_count": 145,
+      "eligible_for_final": true,
+      "reason": "leakage_safe_ablation",
+      "selected_final": false
+    },
+    {
+      "model": "genre_only_ranker",
+      "precision@10": 0.13644,
+      "recall@10": 0.46799749999999996,
+      "ndcg@10": 0.36263661970035754,
+      "hitrate@10": 0.74045,
+      "map@10": 0.2559683568121693,
+      "evaluated_users": 20000,
+      "train_seconds": 183.86438536643982,
+      "used_gpu": true,
+      "feature_count": 57,
+      "eligible_for_final": false,
+      "reason": "baseline_reference",
+      "selected_final": false
+    }
+  ],
+  "test": [
+    {
+      "model": "advanced_full_audit_reference",
+      "precision@10": 0.272925,
+      "recall@10": 0.9310208333333334,
+      "ndcg@10": 0.7300929028294553,
+      "hitrate@10": 0.97895,
+      "map@10": 0.6162293247354497,
+      "evaluated_users": 20000,
+      "eligible_for_final": false,
+      "selected_final": false,
+      "reason": "contains_stage_based_movie_historical_stats"
+    },
+    {
+      "model": "leakage_safe_full_content",
+      "precision@10": 0.25451,
+      "recall@10": 0.865085,
+      "ndcg@10": 0.6924339594276865,
+      "hitrate@10": 0.9575,
+      "map@10": 0.5755521478174603,
+      "evaluated_users": 20000,
+      "eligible_for_final": true,
+      "selected_final": true,
+      "reason": "leakage_safe_ablation"
+    },
+    {
+      "model": "personalization_content_core",
+      "precision@10": 0.23786,
+      "recall@10": 0.8077366666666667,
+      "ndcg@10": 0.6483735924745683,
+      "hitrate@10": 0.9382,
+      "map@10": 0.5295221957671957,
+      "evaluated_users": 20000,
+      "eligible_for_final": true,
+      "selected_final": false,
+      "reason": "leakage_safe_ablation"
+    },
+    {
+      "model": "leakage_safe_no_metadata_counts",
+      "precision@10": 0.23772,
+      "recall@10": 0.80816,
+      "ndcg@10": 0.6469368734116828,
+      "hitrate@10": 0.93875,
+      "map@10": 0.5271395909391534,
+      "evaluated_users": 20000,
+      "eligible_for_final": true,
+      "selected_final": false,
+      "reason": "leakage_safe_ablation"
+    },
+    {
+      "model": "genre_only_ranker",
+      "precision@10": 0.133465,
+      "recall@10": 0.4458258333333333,
+      "ndcg@10": 0.3498449720947377,
+      "hitrate@10": 0.73085,
+      "map@10": 0.24484869411375662,
+      "evaluated_users": 20000,
+      "eligible_for_final": false,
+      "selected_final": false,
+      "reason": "baseline_reference"
+    }
+  ],
+  "ablation": [
+    {
+      "model": "leakage_safe_full_content",
+      "feature_count": 149,
+      "validation_ndcg@10": 0.7092524072059445,
+      "delta_ndcg_vs_safe_full@10": 0.0,
+      "validation_map@10": 0.5961661917989417,
+      "excluded_features": "movie_historical_log_count_norm, movie_historical_rating_norm"
+    },
+    {
+      "model": "personalization_content_core",
+      "feature_count": 141,
+      "validation_ndcg@10": 0.6639470707467391,
+      "delta_ndcg_vs_safe_full@10": -0.045305336459205425,
+      "validation_map@10": 0.5469179616402117,
+      "excluded_features": "movie_has_runtime, movie_has_year, movie_historical_log_count_norm, movie_historical_rating_norm, movie_log_n_cast, movie_log_n_directors, movie_log_n_keywords, movie_log_n_writers, movie_metadata_available, movie_metadata_completeness"
+    },
+    {
+      "model": "leakage_safe_no_metadata_counts",
+      "feature_count": 145,
+      "validation_ndcg@10": 0.6624956454446316,
+      "delta_ndcg_vs_safe_full@10": -0.04675676176131294,
+      "validation_map@10": 0.5448658869047619,
+      "excluded_features": "movie_historical_log_count_norm, movie_historical_rating_norm, movie_log_n_cast, movie_log_n_directors, movie_log_n_keywords, movie_log_n_writers"
+    }
+  ],
+  "cohort_metrics": [
+    {
+      "model": "genre_only_ranker",
+      "history_cohort": "20-50",
+      "precision@10": 0.15235737859500237,
+      "recall@10": 0.47691537010843943,
+      "ndcg@10": 0.382471666342661,
+      "hitrate@10": 0.7791136256482791,
+      "map@10": 0.2750212397940474,
+      "users": 8484
+    },
+    {
+      "model": "genre_only_ranker",
+      "history_cohort": "51-150",
+      "precision@10": 0.13785777515491296,
+      "recall@10": 0.44821973050063935,
+      "ndcg@10": 0.3535138663424935,
+      "hitrate@10": 0.7456476836825022,
+      "map@10": 0.2446020290513504,
+      "users": 6778
+    },
+    {
+      "model": "genre_only_ranker",
+      "history_cohort": "151+",
+      "precision@10": 0.09335162515829463,
+      "recall@10": 0.3867313915857605,
+      "ndcg@10": 0.28617409003254485,
+      "hitrate@10": 0.6232587589700296,
+      "map@10": 0.19117372962270598,
+      "users": 4738
+    },
+    {
+      "model": "leakage_safe_full_content",
+      "history_cohort": "20-50",
+      "precision@10": 0.28246110325318247,
+      "recall@10": 0.902986012887003,
+      "ndcg@10": 0.7425642317113991,
+      "hitrate@10": 0.9767798208392268,
+      "map@10": 0.6397021213600952,
+      "users": 8484
+    },
+    {
+      "model": "leakage_safe_full_content",
+      "history_cohort": "51-150",
+      "precision@10": 0.26254057244024787,
+      "recall@10": 0.8660642274023802,
+      "ndcg@10": 0.6927377333810831,
+      "hitrate@10": 0.9644437887282384,
+      "map@10": 0.5692492556840447,
+      "users": 6778
+    },
+    {
+      "model": "leakage_safe_full_content",
+      "history_cohort": "151+",
+      "precision@10": 0.19297171802448293,
+      "recall@10": 0.7958175038694245,
+      "ndcg@10": 0.60223467493821,
+      "hitrate@10": 0.9130434782608695,
+      "map@10": 0.46970002188765375,
+      "users": 4738
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+model,precision@10,recall@10,ndcg@10,hitrate@10,map@10,evaluated_users,eligible_for_final,selected_final,reason
+advanced_full_audit_reference,0.272925,0.9310208333333334,0.7300929028294553,0.97895,0.6162293247354497,20000,False,False,contains_stage_based_movie_historical_stats
+leakage_safe_full_content,0.25451,0.865085,0.6924339594276865,0.9575,0.5755521478174603,20000,True,True,leakage_safe_ablation
+personalization_content_core,0.23786,0.8077366666666667,0.6483735924745683,0.9382,0.5295221957671957,20000,True,False,leakage_safe_ablation
+leakage_safe_no_metadata_counts,0.23772,0.80816,0.6469368734116828,0.93875,0.5271395909391534,20000,True,False,leakage_safe_ablation
+genre_only_ranker,0.133465,0.4458258333333333,0.3498449720947377,0.73085,0.24484869411375662,20000,False,False,baseline_reference

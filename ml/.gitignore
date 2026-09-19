@@ -1,0 +1,57 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local environment / secrets
+.env
+.env.*
+!.env.example
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Heavy/local datasets
+data/raw/
+data/processed/
+
+# Keep only the frozen production model in Git
+!models/
+models/*
+!models/final_recommender_xgboost_ranker.json
+
+# Common generated model/cache formats
+*.pkl
+*.pickle
+*.joblib
+*.onnx
+*.h5
+*.keras
+
+# Kaggle / local downloads
+kaggle.json
+*.zip
+*.7z
+*.tar
+*.tar.gz

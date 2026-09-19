@@ -1,0 +1,4 @@
+model,feature_count,validation_ndcg@10,delta_ndcg_vs_safe_full@10,validation_map@10,excluded_features
+leakage_safe_full_content,149,0.7092524072059445,0.0,0.5961661917989417,"movie_historical_log_count_norm, movie_historical_rating_norm"
+personalization_content_core,141,0.6639470707467391,-0.045305336459205425,0.5469179616402117,"movie_has_runtime, movie_has_year, movie_historical_log_count_norm, movie_historical_rating_norm, movie_log_n_cast, movie_log_n_directors, movie_log_n_keywords, movie_log_n_writers, movie_metadata_available, movie_metadata_completeness"
+leakage_safe_no_metadata_counts,145,0.6624956454446316,-0.04675676176131294,0.5448658869047619,"movie_historical_log_count_norm, movie_historical_rating_norm, movie_log_n_cast, movie_log_n_directors, movie_log_n_keywords, movie_log_n_writers"

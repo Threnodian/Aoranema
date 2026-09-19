@@ -1,0 +1,12 @@
+{
+  "profile_fraction": 0.5,
+  "train_end_fraction": 0.7,
+  "validation_end_fraction": 0.85,
+  "minimum_user_ratings": 20,
+  "genre_smoothing_alpha": 5.0,
+  "genre_preference": "Smoothed user genre mean rating shrunk to user's own historical mean.",
+  "relative_preference": "(smoothed genre mean - user mean) / rating_range",
+  "metadata_affinity": "Cosine similarity between candidate metadata hash vector and user's centered-rating weighted historical metadata profile.",
+  "metadata_history_weight": "(rating - user_historical_mean) / rating_range",
+  "unknown_genre_policy": "Smoothed to user mean; known/evidence features identify no direct evidence."
+}
