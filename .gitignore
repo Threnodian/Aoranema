@@ -1,0 +1,29 @@
+# Virtual Environment Python
+.venv/
+venv/
+env/
+
+# Cache Python
+__pycache__/
+*.py[cod]
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# DATASET BESAR (Ini yang memblokir error ratings.csv Anda sebelumnya)
+ml/data/
+data/
+
+# Model Machine Learning (Ukurannya biasanya besar)
+models/
+*.pkl
+*.joblib
+*.npy
+
+# File Rahasia / Kredensial API
+.env
+.env.*
+
+# File Sistem Operasi
+.DS_Store
+Thumbs.db
