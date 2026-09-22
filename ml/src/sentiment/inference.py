@@ -21,12 +21,53 @@ MAX_LENGTH = 128
 # parents[2] = folder ml
 ML_ROOT = Path(__file__).resolve().parents[2]
 
-MODEL_PATH = (
+LOCAL_MODEL_PATH = (
     ML_ROOT
     / "models"
     / "sentiment"
     / "indobert_sentiment_model"
 )
+
+# Model repository di Hugging Face
+HF_MODEL_ID = "onalla/indobert_sentiment_model_aoranema"
+
+
+# ============================================================
+# MODEL SOURCE
+# ============================================================
+
+def get_model_source() -> str:
+    """
+    Gunakan model lokal jika tersedia.
+
+    Jika model lokal tidak tersedia, model akan diambil
+    dari Hugging Face Hub.
+    """
+
+    # Cek folder sekaligus config.json agar tidak menganggap
+    # folder kosong sebagai model yang valid.
+    local_model_available = (
+        LOCAL_MODEL_PATH.is_dir()
+        and (LOCAL_MODEL_PATH / "config.json").exists()
+    )
+
+    if local_model_available:
+        print(
+            "Loading sentiment model from local:"
+            f" {LOCAL_MODEL_PATH}"
+        )
+
+        return str(LOCAL_MODEL_PATH)
+
+    print(
+        "Local sentiment model not found."
+        f" Loading from Hugging Face: {HF_MODEL_ID}"
+    )
+
+    return HF_MODEL_ID
+
+
+MODEL_SOURCE = get_model_source()
 
 
 # ============================================================
@@ -42,18 +83,12 @@ DEVICE = torch.device(
 # LOAD MODEL
 # ============================================================
 
-if not MODEL_PATH.exists():
-    raise FileNotFoundError(
-        f"Model sentiment tidak ditemukan di: {MODEL_PATH}"
-    )
-
-
 tokenizer = AutoTokenizer.from_pretrained(
-    MODEL_PATH
+    MODEL_SOURCE
 )
 
 model = AutoModelForSequenceClassification.from_pretrained(
-    MODEL_PATH
+    MODEL_SOURCE
 )
 
 model.to(DEVICE)
@@ -90,7 +125,7 @@ def predict_sentiment(text: str) -> dict:
         for key, value in encoded.items()
     }
 
-    with torch.no_grad():
+    with torch.inference_mode():
         outputs = model(**encoded)
 
     probabilities = torch.softmax(
@@ -111,7 +146,7 @@ def predict_sentiment(text: str) -> dict:
     ]
 
     return {
-        "sentiment": sentiment,
+        "sentiment": str(sentiment),
         "confidence": confidence,
     }
 
@@ -142,7 +177,7 @@ def predict_sentiment_detail(text: str) -> dict:
         for key, value in encoded.items()
     }
 
-    with torch.no_grad():
+    with torch.inference_mode():
         outputs = model(**encoded)
 
     probabilities = torch.softmax(
@@ -165,12 +200,14 @@ def predict_sentiment_detail(text: str) -> dict:
             label_id
         ]
 
-        probability_by_label[label] = float(
+        probability_by_label[
+            str(label)
+        ] = float(
             probability.item()
         )
 
     return {
-        "sentiment": sentiment,
+        "sentiment": str(sentiment),
         "confidence": float(
             probabilities[prediction_id].item()
         ),
@@ -190,8 +227,9 @@ if __name__ == "__main__":
         "Customer service sangat ramah dan membantu.",
     ]
 
+    print()
     print("Device :", DEVICE)
-    print("Model  :", MODEL_PATH)
+    print("Model  :", MODEL_SOURCE)
     print()
 
     for text in examples:
@@ -202,7 +240,10 @@ if __name__ == "__main__":
         print("Sentiment  :", result["sentiment"])
         print(
             "Confidence :",
-            round(result["confidence"], 4),
+            round(
+                result["confidence"],
+                4,
+            ),
         )
         print(
             "Probability:",
