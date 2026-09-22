@@ -2,7 +2,7 @@
 Aoranema - FastAPI Application
 ==============================
 
-Entry point untuk Recommendation API.
+Entry point untuk Aoranema ML API..
 
 Jalankan dari folder `ml/`:
 
@@ -16,6 +16,7 @@ Endpoint utama:
 - GET  /               -> info singkat API
 - GET  /health         -> readiness/model health
 - POST /recommendations -> personalized movie ranking
+- POST /sentiment       -> sentiment analysis
 - GET  /docs           -> Swagger UI
 - GET  /redoc          -> ReDoc
 
@@ -43,18 +44,22 @@ from api.routes.recommendation import (
     get_recommendation_service,
     router as recommendation_router,
 )
+
+from api.routes.sentiment import (
+    router as sentiment_router,
+)
+
 from api.schemas import (
     HealthResponse,
     ServiceInfoResponse,
 )
 
 
-API_TITLE = "Aoranema Recommendation API"
+API_TITLE = "Aoranema ML API"
 API_DESCRIPTION = (
-    "Machine-learning recommendation service for Aoranema. "
-    "The API builds user preferences, constructs the frozen 149-feature "
-    "representation, scores eligible movie candidates with the final "
-    "XGBRanker model, and returns ranked recommendations."
+    "Machine-learning service for Aoranema. "
+    "Provides personalized movie recommendations using XGBRanker "
+    "and Indonesian feedback sentiment analysis using IndoBERT."
 )
 API_VERSION = "1.0.0"
 
@@ -170,6 +175,10 @@ def create_app() -> FastAPI:
 
     app.include_router(
         recommendation_router
+    )
+
+    app.include_router(
+        sentiment_router
     )
 
     @app.get(

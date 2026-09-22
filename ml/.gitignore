@@ -10,6 +10,7 @@ htmlcov/
 
 # Virtual environments
 .venv/
+.venv-sentiment/
 venv/
 env/
 
@@ -35,8 +36,10 @@ Thumbs.db
 # Heavy/local datasets
 data/raw/
 data/processed/
+data/sentiment/raw/
+data/sentiment/processed/
 
-# Keep only the frozen production model in Git
+# Keep only the frozen recommendation production model in Git
 !models/
 models/*
 !models/final_recommender_xgboost_ranker.json
@@ -55,3 +58,6 @@ kaggle.json
 *.7z
 *.tar
 *.tar.gz
+
+# Local dependency backup
+requirements-current-backup.txt

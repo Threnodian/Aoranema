@@ -1,6 +1,14 @@
 # Aoranema ML API - production dependencies
+
+# Shared / Recommendation
 numpy>=2.0,<3
 xgboost>=3.0,<4
+
+# Sentiment
+torch
+transformers==4.46.3
+
+# API
 fastapi>=0.128,<1
 uvicorn[standard]>=0.48,<1
 pydantic>=2.13,<3
